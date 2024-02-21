@@ -469,7 +469,7 @@ class LightGlue(nn.Module):
             prune0: [B x M]
             prune1: [B x N]
         """
-        with torch.autocast(enabled=self.conf.mp, device_type="cuda"):
+        with torch.cuda.amp.autocast(enabled=self.conf.mp):
             return self._forward(data)
 
     def _forward(self, data: dict) -> dict:
